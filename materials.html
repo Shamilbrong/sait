@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Библиотека — ЦифроПедагог 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #14b8a6;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 60px;
+            padding: 16px 32px;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4f46e5, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .nav-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .nav-link.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4f46e5, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--dark);
+            margin: 30px 0 20px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .material-card {
+            background: white;
+            border-radius: 24px;
+            padding: 28px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+        }
+
+        .material-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .material-title {
+            color: var(--dark);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .material-desc {
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+
+        .material-meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .material-tag {
+            padding: 4px 12px;
+            background: #e0e7ff;
+            border-radius: 20px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            background: white;
+            color: var(--primary);
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 16px; }
+            h1 { font-size: 2.5rem; }
+            .glass-card { padding: 28px; }
+            .materials-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">🎓 ЦифроПедагог</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="test.html" class="nav-link">📋 Тест</a>
+                <a href="tools.html" class="nav-link">🛠️ Инструменты</a>
+                <a href="roadmap.html" class="nav-link">📈 Трекер</a>
+                <a href="materials.html" class="nav-link active">📚 Библиотека</a>
+            </div>
+        </nav>
+
+        <div class="glass-card">
+            <h1>📚 Библиотека цифрового педагога</h1>
+            <p style="color: var(--gray); font-size: 1.2rem; margin-bottom: 30px;">Актуальные материалы, исследования и методические рекомендации 2026 года</p>
+
+            <h2>📜 Нормативные документы</h2>
+            <div class="materials-grid">
+                <div class="material-card">
+                    <div class="material-icon">📋</div>
+                    <div class="material-title">Приказ Минпросвещения РФ об ЭОР</div>
+                    <div class="material-desc">Актуальный перечень электронных образовательных ресурсов, допущенных к использованию</div>
+                    <div class="material-meta">
+                        <span class="material-tag">ФГОС</span>
+                        <span class="material-tag">2026</span>
+                    </div>
+                    <a href="#" class="btn">📥 Скачать PDF</a>
+                </div>
+                <div class="material-card">
+                    <div class="material-icon">🏛️</div>
+                    <div class="material-title">Концепция цифровой трансформации</div>
+                    <div class="material-desc">Стратегические направления развития цифровой образовательной среды до 2030 года</div>
+                    <div class="material-meta">
+                        <span class="material-tag">Стратегия</span>
+                        <span class="material-tag">2030</span>
+                    </div>
+                    <a href="#" class="btn">📥 Скачать PDF</a>
+                </div>
+                <div class="material-card">
+                    <div class="material-icon">🛡️</div>
+                    <div class="material-title">Методичка по кибербезопасности</div>
+                    <div class="material-desc">Рекомендации по защите персональных данных и профилактике киберугроз в школе</div>
+                    <div class="material-meta">
+                        <span class="material-tag">Безопасность</span>
+                        <span class="material-tag">Роскомнадзор</span>
+                    </div>
+                    <a href="#" class="btn">📥 Скачать PDF</a>
+                </div>
+            </div>
+
+            <h2>🎓 Обучающие курсы</h2>
+            <div class="materials-grid">
+                <div class="material-card">
+                    <div class="material-icon">🤖</div>
+                    <div class="material-title">ИИ в работе педагога</div>
+                    <div class="material-desc">Курс Академии Минпросвещения: от базовых промптов до создания ИИ-ассистентов</div>
+                    <div class="material-meta">
+                        <span class="material-tag">36 часов</span>
+                        <span class="material-tag">Удостоверение</span>
+                    </div>
+                    <a href="#" class="btn">🎯 Записаться</a>
+                </div>
+                <div class="material-card">
+                    <div class="material-icon">💻</div>
+                    <div class="material-title">Цифровая трансформация учителя</div>
+                    <div class="material-desc">Комплексная программа повышения квалификации для педагогов всех предметов</div>
+                    <div class="material-meta">
+                        <span class="material-tag">72 часа</span>
+                        <span class="material-tag">Диплом</span>
+                    </div>
+                    <a href="#" class="btn">🎯 Записаться</a>
+                </div>
+                <div class="material-card">
+                    <div class="material-icon">🎮</div>
+                    <div class="material-title">Геймификация в образовании</div>
+                    <div class="material-desc">Практический курс по созданию образовательных квестов и интерактивных игр</div>
+                    <div class="material-meta">
+                        <span class="material-tag">24 часа</span>
+                        <span class="material-tag">Сертификат</span>
+                    </div>
+                    <a href="#" class="btn">🎯 Записаться</a>
+                </div>
+            </div>
+
+            <h2>📊 Исследования и аналитика</h2>
+            <div class="materials-grid">
+                <div class="material-card">
+                    <div class="material-icon">📈</div>
+                    <div class="material-title">Индекс цифровой грамотности педагогов</div>
+                    <div class="material-desc">Аналитический отчет НАФИ за 2025-2026 год по регионам РФ</div>
+                    <div class="material-meta">
+                        <span class="material-tag">НАФИ</span>
+                        <span class="material-tag">Аналитика</span>
+                    </div>
+                    <a href="#" class="btn">📊 Читать отчет</a>
+                </div>
+                <div class="material-card">
+                    <div class="material-icon">🎯</div>
+                    <div class="material-title">Тренды EdTech 2026</div>
+                    <div class="material-desc">Обзор ключевых технологических трендов в школьном образовании</div>
+                    <div class="material-meta">
+                        <span class="material-tag">EdTech</span>
+                        <span class="material-tag">Прогноз</span>
+                    </div>
+                    <a href="#" class="btn">📊 Читать отчет</a>
+                </div>
+                <div class="material-card">
+                    <div class="material-icon">🏆</div>
+                    <div class="material-title">Лучшие практики цифровизации</div>
+                    <div class="material-desc">Сборник кейсов победителей конкурса «Цифровой учитель года 2025»</div>
+                    <div class="material-meta">
+                        <span class="material-tag">Кейсы</span>
+                        <span class="material-tag">Опыт</span>
+                    </div>
+                    <a href="#" class="btn">📊 Читать</a>
+                </div>
+            </div>
+
+            <h2>📹 Вебинары и записи</h2>
+            <div class="materials-grid">
+                <div class="material-card">
+                    <div class="material-icon">🎬</div>
+                    <div class="material-title">Работа во ФГИС «Моя школа»</div>
+                    <div class="material-desc">Пошаговая видеоинструкция по использованию всех модулей платформы</div>
+                    <div class="material-meta">
+                        <span class="material-tag">Видео</span>
+                        <span class="material-tag">45 мин</span>
+                    </div>
+                    <a href="#" class="btn">▶️ Смотреть</a>
+                </div>
+                <div class="material-card">
+                    <div class="material-icon">🤖</div>
+                    <div class="material-title">Мастер-класс: ИИ для учителя</div>
+                    <div class="material-desc">Практические приемы использования нейросетей для подготовки к урокам</div>
+                    <div class="material-meta">
+                        <span class="material-tag">Запись</span>
+                        <span class="material-tag">1.5 часа</span>
+                    </div>
+                    <a href="#" class="btn">▶️ Смотреть</a>
+                </div>
+                <div class="material-card">
+                    <div class="material-icon">🛠️</div>
+                    <div class="material-title">Обзор цифровых инструментов</div>
+                    <div class="material-desc">Еженедельный вебинар с демонстрацией новых сервисов для педагогов</div>
+                    <div class="material-meta">
+                        <span class="material-tag">Онлайн</span>
+                        <span class="material-tag">Четверг 16:00</span>
+                    </div>
+                    <a href="#" class="btn">🔔 Зарегистрироваться</a>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>🖥️ ЦифроПедагог 2026 • Библиотека регулярно пополняется новыми материалами</p>
+        </footer>
+    </div>
+</body>
+</html>

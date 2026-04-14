@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест: Цифровая грамотность педагога 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .test-container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Шапка теста */
+        .test-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .test-header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .progress-badge {
+            background: #e0e7ff;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #4f46e5;
+        }
+
+        .nav-link {
+            color: #6b7280;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: #f3f4f6;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background: #e5e7eb;
+            color: #1f2937;
+        }
+
+        /* Вопросы */
+        .question-card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f3f4f6;
+            transition: all 0.3s;
+        }
+
+        .question-number {
+            display: inline-block;
+            background: #4f46e5;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #1f2937;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            background: #f9fafb;
+            border-radius: 16px;
+            border: 2px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .option:hover {
+            background: #eef2ff;
+            border-color: #a5b4fc;
+        }
+
+        .option.selected {
+            background: #e0e7ff;
+            border-color: #4f46e5;
+        }
+
+        .option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 18px;
+            accent-color: #4f46e5;
+            cursor: pointer;
+        }
+
+        .option label {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #374151;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        /* Кнопки */
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #4f46e5;
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.3);
+            flex: 2;
+        }
+
+        .btn-primary:hover {
+            background: #4338ca;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #4b5563;
+            border: 2px solid #e5e7eb;
+            flex: 1;
+        }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Результаты */
+        .result-screen {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .result-score {
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 20px 0;
+        }
+
+        .result-level {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .recommendation-box {
+            background: #f3f4f6;
+            border-radius: 24px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .restart-btn {
+            background: #4f46e5;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: #dc2626;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .test-container {
+                padding: 24px;
+            }
+            .test-header h1 {
+                font-size: 1.6rem;
+            }
+            .question-text {
+                font-size: 1.1rem;
+            }
+            .option {
+                padding: 12px 14px;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+            .btn {
+                padding: 14px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="test-container">
+    
+    <!-- Верхняя панель -->
+    <div class="test-header">
+        <div>
+            <h1>📋 Цифровой диктант</h1>
+            <p style="color: #6b7280;">Проверьте свою ИКТ-компетентность (12 вопросов)</p>
+        </div>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <span class="progress-badge" id="questionCounter">Вопрос 1/12</span>
+            <a href="index.html" class="nav-link">← На главную</a>
+        </div>
+    </div>
+
+    <!-- БЛОК ТЕСТА (активен пока не завершен) -->
+    <div id="testSection">
+        <div id="questionsContainer"></div>
+        
+        <div id="errorMessage" class="error-message"></div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-secondary" id="prevBtn" disabled>← Назад</button>
+            <button class="btn btn-primary" id="nextBtn">Далее →</button>
+        </div>
+    </div>
+
+    <!-- БЛОК РЕЗУЛЬТАТОВ (скрыт изначально) -->
+    <div id="resultSection" class="result-screen hidden">
+        <div style="font-size: 4rem; margin-bottom: 10px;">🎓</div>
+        <h2 style="font-size: 2rem; margin-bottom: 10px;">Ваш результат</h2>
+        <div id="scoreDisplay" class="result-score">0/12</div>
+        <div id="levelDisplay" class="result-level">Базовый уровень</div>
+        
+        <div id="recommendationText" class="recommendation-box">
+            <!-- Сюда вставится текст рекомендации через JS -->
+        </div>
+        
+        <button class="restart-btn" id="restartBtn">Пройти тест заново</button>
+        <p style="margin-top: 20px;">
+            <a href="index.html" style="color: #6b7280;">Вернуться на главную страницу проекта</a>
+        </p>
+    </div>
+</div>
+
+<script>
+    (function(){
+        "use strict";
+
+        // ---------------------------
+        // БАЗА ВОПРОСОВ (12 шт.)
+        // ---------------------------
+        const questions = [
+            {
+                text: "Что такое двухфакторная аутентификация (2FA)?",
+                options: [
+                    "Ввод пароля два раза подряд",
+                    "Подтверждение входа через SMS или приложение помимо пароля",
+                    "Использование двух разных браузеров",
+                    "Пароль длиной не менее 12 символов"
+                ],
+                correct: 1 // индексация с 0
+            },
+            {
+                text: "Какой из сервисов является отечественной платформой для видео-конференц-связи в образовании?",
+                options: [
+                    "Zoom",
+                    "Google Meet",
+                    "Сферум (VK)",
+                    "Skype"
+                ],
+                correct: 2
+            },
+            {
+                text: "Что означает аббревиатура 'ИИ' в контексте современных цифровых инструментов педагога?",
+                options: [
+                    "Интерактивные иллюстрации",
+                    "Искусственный интеллект",
+                    "Информационная интеграция",
+                    "Индивидуальные измерения"
+                ],
+                correct: 1
+            },
+            {
+                text: "Какой из признаков чаще всего указывает на фишинговое (мошенническое) письмо?",
+                options: [
+                    "Наличие логотипа компании",
+                    "Орфографические ошибки и странный адрес отправителя",
+                    "Письмо пришло в рабочее время",
+                    "В теме письма указано 'Срочно'"
+                ],
+                correct: 1
+            },
+            {
+                text: "Какой инструмент лучше всего подходит для совместной работы над виртуальной доской (стикеры, мозговой штурм) в онлайн-режиме?",
+                options: [
+                    "Microsoft Word",
+                    "Miro / Padlet / sBoard",
+                    "Adobe Photoshop",
+                    "WinRAR"
+                ],
+                correct: 1
+            },
+            {
+                text: "Как называется российская государственная информационная система, объединяющая электронный дневник, библиотеку ЦОК и видеоуроки?",
+                options: [
+                    "ФГИС 'Моя школа'",
+                    "Е-услуги",
+                    "Электронное правительство",
+                    "Российская электронная школа (РЭШ)"
+                ],
+                correct: 0
+            },
+            {
+                text: "Какое расширение файла говорит о том, что это скорее всего архив, который нужно распаковать перед использованием?",
+                options: [
+                    ".exe",
+                    ".pdf",
+                    ".zip / .rar",
+                    ".jpg"
+                ],
+                correct: 2
+            },
+            {
+                text: "Для чего в педагогической практике используют нейросети типа YandexGPT или GigaChat?",
+                options: [
+                    "Только для поиска картинок",
+                    "Для генерации черновиков планов уроков, идей заданий и дифференциации",
+                    "Для взлома школьной сети",
+                    "Для подсчета зарплаты"
+                ],
+                correct: 1
+            },
+            {
+                text: "Что такое 'цифровой след' педагога?",
+                options: [
+                    "Пыль на мониторе",
+                    "Информация о действиях человека в интернете (комментарии, аккаунты, публикации)",
+                    "Логин и пароль от почты",
+                    "Количество проведенных онлайн-уроков"
+                ],
+                correct: 1
+            },
+            {
+                text: "Какой сервис предназначен для создания интерактивных упражнений типа 'Сопоставление', 'Викторина', 'Кроссворд'?",
+                options: [
+                    "WordWall / LearningApps",
+                    "Яндекс Карты",
+                    "1С: Бухгалтерия",
+                    "PowerPoint (только показ слайдов)"
+                ],
+                correct: 0
+            },
+            {
+                text: "Можно ли использовать личные аккаунты в соцсетях для общения с родителями учеников по рабочим вопросам, согласно рекомендациям Минпросвещения?",
+                options: [
+                    "Да, это удобно",
+                    "Нет, рекомендуется использовать официальные каналы школы или защищенные мессенджеры (Сферум)",
+                    "Можно, но только по выходным",
+                    "Можно, если родитель первый написал"
+                ],
+                correct: 1
+            },
+            {
+                text: "Что такое 'облачное хранилище' (Яндекс.Диск, Облако Mail.ru)?",
+                options: [
+                    "Папка на рабочем столе компьютера",
+                    "Жесткий диск в системном блоке",
+                    "Сервер в интернете для хранения файлов с доступом с любого устройства",
+                    "Коробка с флешками"
+                ],
+                correct: 2
+            }
+        ];
+
+        // ---------------------------
+        // ПЕРЕМЕННЫЕ СОСТОЯНИЯ
+        // ---------------------------
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(questions.length).fill(null); // храним индексы выбранных ответов
+        let testCompleted = false;
+
+        // DOM элементы
+        const testSection = document.getElementById('testSection');
+        const resultSection = document.getElementById('resultSection');
+        const questionsContainer = document.getElementById('questionsContainer');
+        const questionCounter = document.getElementById('questionCounter');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        const restartBtn = document.getElementById('restartBtn');
+        
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const levelDisplay = document.getElementById('levelDisplay');
+        const recommendationText = document.getElementById('recommendationText');
+
+        // ---------------------------
+        // ФУНКЦИИ ОТРИСОВКИ
+        // ---------------------------
+        function renderQuestion(index) {
+            const q = questions[index];
+            if (!q) return;
+
+            // Обновляем счетчик
+            questionCounter.textContent = `Вопрос ${index + 1}/${questions.length}`;
+
+            // Генерируем HTML вопроса
+            let html = `
+                <div class="question-card">
+                    <span class="question-number">Вопрос ${index + 1}</span>
+                    <div class="question-text">${q.text}</div>
+                    <div class="options">
+            `;
+
+            q.options.forEach((opt, optIndex) => {
+                const isChecked = (userAnswers[index] === optIndex);
+                html += `
+                    <div class="option ${isChecked ? 'selected' : ''}" data-option-index="${optIndex}">
+                        <input type="radio" name="q${index}" id="opt_${index}_${optIndex}" value="${optIndex}" ${isChecked ? 'checked' : ''}>
+                        <label for="opt_${index}_${optIndex}">${opt}</label>
+                    </div>
+                `;
+            });
+
+            html += `</div></div>`;
+            questionsContainer.innerHTML = html;
+
+            // Навешиваем обработчики на клик по всей карточке опции
+            document.querySelectorAll('.option').forEach(optDiv => {
+                const radio = optDiv.querySelector('input[type="radio"]');
+                optDiv.addEventListener('click', (e) => {
+                    // Если клик был по самому radio, preventDefault не нужен, но нам нужно обновить выделение
+                    const radioInput = optDiv.querySelector('input[type="radio"]');
+                    if (radioInput) {
+                        radioInput.checked = true;
+                        // Снимаем selected со всех опций в этом вопросе
+                        document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+                        optDiv.classList.add('selected');
+                        
+                        // Сохраняем ответ
+                        const val = parseInt(radioInput.value);
+                        userAnswers[index] = val;
+                        
+                        // Убираем ошибку
+                        errorMessage.textContent = '';
+                    }
+                });
+            });
+
+            // Обновляем состояние кнопок навигации
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            prevBtn.disabled = (currentQuestionIndex === 0);
+            
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.textContent = 'Завершить тест 🏁';
+            } else {
+                nextBtn.textContent = 'Далее →';
+            }
+        }
+
+        // Проверка, дан ли ответ на текущий вопрос
+        function isCurrentQuestionAnswered() {
+            return userAnswers[currentQuestionIndex] !== null;
+        }
+
+        // ---------------------------
+        // ЛОГИКА НАВИГАЦИИ
+        // ---------------------------
+        function goToNext() {
+            // Если тест завершен (кнопка стала "Завершить")
+            if (currentQuestionIndex === questions.length - 1) {
+                // Проверяем, все ли вопросы отвечены
+                const allAnswered = userAnswers.every(ans => ans !== null);
+                if (!allAnswered) {
+                    errorMessage.textContent = '⚠️ Ответьте на все вопросы перед завершением теста.';
+                    return;
+                }
+                finishTest();
+                return;
+            }
+
+            // Проверяем, есть ли ответ на текущий вопрос
+            if (!isCurrentQuestionAnswered()) {
+                errorMessage.textContent = '⚠️ Пожалуйста, выберите один из вариантов ответа.';
+                return;
+            }
+
+            // Переход к следующему вопросу
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion(currentQuestionIndex);
+                errorMessage.textContent = '';
+            }
+        }
+
+        function goToPrev() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion(currentQuestionIndex);
+                errorMessage.textContent = '';
+            }
+        }
+
+        // ---------------------------
+        // ПОДСЧЕТ И ОТОБРАЖЕНИЕ РЕЗУЛЬТАТОВ
+        // ---------------------------
+        function finishTest() {
+    // Подсчет баллов
+    let score = 0;
+    userAnswers.forEach((ans, idx) => {
+        if (ans === questions[idx].correct) score++;
+    });
+
+    const total = questions.length;
+    const percentage = Math.round((score / total) * 100);
+    
+    // Определяем уровень и рекомендации
+    let levelText = '';
+    let recommendation = '';
+
+    if (percentage >= 85) {
+        levelText = '🚀 Цифровой эксперт / Наставник';
+        recommendation = `...`; // ваш текст
+    } else if (percentage >= 60) {
+        levelText = '📊 Продвинутый пользователь';
+        recommendation = `...`;
+    } else if (percentage >= 30) {
+        levelText = '🔧 Базовый пользователь';
+        recommendation = `...`;
+    } else {
+        levelText = '🌱 Начинающий пользователь';
+        recommendation = `...`;
+    }
+
+    // Отображаем результаты
+    scoreDisplay.textContent = `${score}/${total} (${percentage}%)`;
+    levelDisplay.textContent = levelText;
+    recommendationText.innerHTML = recommendation;
+
+    // СОХРАНЯЕМ В LOCALSTORAGE ДЛЯ ПРОФИЛЯ
+    const testResult = {
+        score: score,
+        total: total,
+        percentage: percentage,
+        level: levelText,
+        date: new Date().toISOString()
+    };
+    localStorage.setItem('teacherTestResult', JSON.stringify(testResult));
+
+    // Скрываем тест, показываем результат
+    testSection.classList.add('hidden');
+    resultSection.classList.remove('hidden');
+    testCompleted = true;
+}
+
+        function restartTest() {
+            // Сброс состояния
+            currentQuestionIndex = 0;
+            userAnswers = new Array(questions.length).fill(null);
+            testCompleted = false;
+            
+            // Показываем секции
+            testSection.classList.remove('hidden');
+            resultSection.classList.add('hidden');
+            
+            // Отрисовываем первый вопрос
+            renderQuestion(0);
+            errorMessage.textContent = '';
+        }
+
+        // ---------------------------
+        // ИНИЦИАЛИЗАЦИЯ И ОБРАБОТЧИКИ
+        // ---------------------------
+        function init() {
+            renderQuestion(0);
+            
+            nextBtn.addEventListener('click', goToNext);
+            prevBtn.addEventListener('click', goToPrev);
+            restartBtn.addEventListener('click', restartTest);
+        }
+
+        init();
+    })();
+</script>
+
+</body>
+</html>
