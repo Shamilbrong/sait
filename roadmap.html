@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Трекер развития — ЦифроПедагог 2026</title>
+    <title>ИИ в работе педагога — Навигатор цифровой грамотности 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 24px;
         }
@@ -44,13 +44,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 0;
-            margin-bottom: 30px;
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.95);
             border-radius: 60px;
             padding: 16px 32px;
             margin-top: 20px;
+            margin-bottom: 30px;
             border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
@@ -103,224 +102,282 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, #4f46e5, #ec4899);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 20px;
-        }
-
-        .roadmap-container {
-            position: relative;
-            padding-left: 40px;
-        }
-
-        .roadmap-container::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 10px;
-            bottom: 10px;
-            width: 3px;
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
-            border-radius: 3px;
-        }
-
-        .roadmap-step {
-            position: relative;
-            margin-bottom: 30px;
-            padding: 24px;
-            background: white;
-            border-radius: 24px;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s;
-            box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .roadmap-step:hover {
-            transform: translateX(10px);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-        }
-
-        .roadmap-step.completed {
-            border-left: 4px solid var(--success);
-            background: #f0fdf4;
-        }
-
-        .step-marker {
-            position: absolute;
-            left: -52px;
-            top: 30px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            z-index: 1;
-            transition: all 0.3s;
-        }
-
-        .step-marker.completed {
-            background: var(--success);
-            color: white;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
-        }
-
-        .step-marker.inprogress {
-            background: var(--warning);
-            color: white;
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
-            animation: pulse 2s infinite;
-        }
-
-        .step-marker.pending {
-            background: var(--gray);
-            color: white;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .step-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .step-title-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .step-title {
-            color: var(--dark);
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .step-status {
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .status-completed { 
-            background: #d1fae5; 
-            color: #065f46; 
-        }
-        
-        .status-inprogress { 
-            background: #fef3c7; 
-            color: #92400e; 
-        }
-        
-        .status-pending { 
-            background: #e2e8f0; 
-            color: #475569; 
-        }
-
-        .step-description {
-            color: var(--gray);
             margin-bottom: 16px;
         }
 
-        /* Чекбокс */
-        .step-checkbox-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 15px 0;
+        /* Главный курс */
+        .main-course {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            margin: 30px 0;
         }
 
-        .step-checkbox {
+        /* Заголовок курса */
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 32px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            transition: all 0.2s;
+            border-bottom: 1px solid transparent;
+        }
+
+        .course-header:hover {
+            background: linear-gradient(135deg, #f1f5f9, #ffffff);
+        }
+
+        .course-info {
+            flex: 1;
+        }
+
+        .course-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .course-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .course-desc {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .expand-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: var(--primary);
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .expand-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Содержимое курса (разделы) */
+        .course-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: #f9fafb;
+        }
+
+        .course-details.open {
+            max-height: 2000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .sections-container {
+            padding: 24px 32px;
+        }
+
+        .sections-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .sections-header span {
+            font-size: 1.3rem;
+        }
+
+        .sections-header h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Список разделов */
+        .sections-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .section-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+        .section-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateX(4px);
+        }
+
+        .section-info {
+            flex: 1;
+        }
+
+        .section-number {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: #e0e7ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .section-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .section-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.4;
+        }
+
+        .section-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .pdf-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .pdf-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -5px rgba(79, 70, 229, 0.4);
+        }
+
+        .section-checkbox {
             width: 24px;
             height: 24px;
             cursor: pointer;
             accent-color: var(--success);
         }
 
-        .step-checkbox-label {
-            color: var(--dark);
+        /* Прогресс курса */
+        .course-progress {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .course-progress-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .course-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success), var(--primary));
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        .course-progress-text {
+            font-size: 0.9rem;
+            color: var(--gray);
             font-weight: 500;
-            cursor: pointer;
-            user-select: none;
+        }
+
+        /* Общий прогресс */
+        .overall-progress-card {
+            margin-top: 30px;
+            padding: 24px;
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
         }
 
         .progress-bar {
-            height: 8px;
+            height: 10px;
             background: #e2e8f0;
-            border-radius: 8px;
-            margin: 15px 0;
+            border-radius: 10px;
+            margin: 12px 0;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: width 0.5s ease;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
-
-        .step-actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 16px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            background: white;
-            color: var(--primary);
-            border: 1px solid #e2e8f0;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
         }
 
         .btn-danger {
             background: #ef4444;
             color: white;
             border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .btn-danger:hover {
             background: #dc2626;
+            transform: translateY(-2px);
         }
 
         .reset-section {
-            margin-top: 30px;
+            margin-top: 20px;
             display: flex;
             justify-content: flex-end;
         }
@@ -332,60 +389,118 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 16px;
+            font-weight: 500;
+            z-index: 10000;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
         @media (max-width: 768px) {
-            .navbar { flex-direction: column; gap: 16px; }
-            h1 { font-size: 2.5rem; }
-            .roadmap-container { padding-left: 20px; }
-            .roadmap-container::before { left: 10px; }
-            .step-marker { left: -42px; width: 35px; height: 35px; font-size: 1rem; }
+            .navbar { flex-direction: column; gap: 16px; text-align: center; }
+            h1 { font-size: 1.8rem; text-align: center; }
+            .glass-card { padding: 24px; }
+            .course-header { padding: 20px; flex-direction: column; gap: 15px; text-align: center; }
+            .course-title { font-size: 1.4rem; }
+            .sections-container { padding: 20px; }
+            .section-item { flex-direction: column; gap: 15px; text-align: center; }
+            .section-actions { justify-content: center; }
+            .pdf-btn { padding: 8px 20px; font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <nav class="navbar">
-            <div class="logo">🎓 ЦифроПедагог</div>
+            <div class="logo">🎓 Навигатор цифровой грамотности</div>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Главная</a>
                 <a href="test.html" class="nav-link">📋 Тест</a>
                 <a href="tools.html" class="nav-link">🛠️ Инструменты</a>
-                <a href="roadmap.html" class="nav-link active">📈 Трекер</a>
-                <a href="materials.html" class="nav-link">📚 Библиотека</a>
-            </div>
+                <a href="roadmap.html" class="nav-link active">📈 ИИ в работе педагога</a>
+                          </div>
         </nav>
 
         <div class="glass-card">
-            <h1>📈 Трекер цифрового развития</h1>
-            <p style="color: var(--gray); font-size: 1.2rem; margin-bottom: 30px;">
-                Отмечайте выполненные этапы — прогресс сохраняется автоматически
+            <h1>📈 ИИ в работе педагога</h1>
+            <p style="color: var(--gray); font-size: 1rem; margin-bottom: 10px;">
+                Изучите курс по нейросетям в образовании. В курсе 5 разделов, посвященных различным типам генеративных нейросетей.
             </p>
+            
+            <!-- Главный курс -->
+            <div class="main-course" id="mainCourse">
+                <!-- Заголовок курса -->
+                <div class="course-header" id="courseHeader">
+                    <div class="course-info">
+                        <span class="course-badge">🌟 Основной курс</span>
+                        <div class="course-title">Нейросети в работе педагога</div>
+                        <div class="course-desc">Полный курс по использованию генеративных нейросетей в профессиональной деятельности педагога. Освойте современные инструменты для создания текстов, презентаций, видео, аудио и изображений.</div>
+                    </div>
+                    <button class="expand-btn" id="expandBtn">▼</button>
+                </div>
 
-            <div class="roadmap-container" id="roadmapContainer">
-                <!-- Этапы будут сгенерированы через JavaScript -->
+                <!-- Содержимое курса (разделы) -->
+                <div class="course-details" id="courseDetails">
+                    <div class="sections-container">
+                        <div class="sections-header">
+                            <span>📚</span>
+                            <h3>Разделы курса</h3>
+                        </div>
+                        
+                        <div class="sections-list" id="sectionsList">
+                            <!-- Разделы будут сгенерированы через JavaScript -->
+                        </div>
+
+                        <!-- Прогресс курса -->
+                        <div class="course-progress" id="courseProgress">
+                            <div class="course-progress-bar">
+                                <div class="course-progress-fill" id="courseProgressFill" style="width: 0%;"></div>
+                            </div>
+                            <div class="course-progress-text" id="courseProgressText">0/5 разделов пройдено (0%)</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Общий прогресс -->
-            <div style="margin-top: 40px; padding: 24px; background: white; border-radius: 24px; border: 1px solid #e2e8f0;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                    <span style="color: var(--dark); font-weight: 600;">Общий прогресс обучения</span>
-                    <span style="color: var(--primary); font-weight: 600;" id="overallProgressText">0%</span>
+            <!-- Общий прогресс (он же прогресс курса, так как курс один) -->
+            <div class="overall-progress-card">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="color: var(--dark); font-weight: 600;">📊 Прогресс изучения курса</span>
+                    <span style="color: var(--primary); font-weight: 700;" id="overallProgressText">0%</span>
                 </div>
-                <div class="progress-bar" style="height: 12px;">
+                <div class="progress-bar">
                     <div class="progress-fill" id="overallProgressBar" style="width: 0%;"></div>
                 </div>
-                <p style="color: var(--gray); margin-top: 16px;" id="progressMessage">🎯 Отметьте выполненные этапы, чтобы увидеть прогресс</p>
+                <p style="color: var(--gray); margin-top: 12px;" id="progressMessage">🎯 Отмечайте разделы как пройденные, чтобы отслеживать прогресс</p>
             </div>
 
             <!-- Кнопка сброса -->
             <div class="reset-section">
-                <button class="btn btn-danger" id="resetProgressBtn">
+                <button class="btn-danger" id="resetProgressBtn">
                     🔄 Сбросить весь прогресс
                 </button>
             </div>
         </div>
 
         <footer class="footer">
-            <p>🖥️ ЦифроПедагог 2026 • Прогресс сохраняется в вашем браузере</p>
+            <p>🖥️ Навигатор цифровой грамотности • Прогресс сохраняется в вашем браузере</p>
         </footer>
     </div>
 
@@ -393,76 +508,112 @@
         (function() {
             "use strict";
 
-            // ---------- ДАННЫЕ ЭТАПОВ ----------
-            const stepsData = [
+            // ---------- ОБНОВЛЕННЫЕ ДАННЫЕ: 5 РАЗДЕЛОВ КУРСА ----------
+            // Новые названия и описания разделов
+            const sectionsData = [
                 {
                     id: 1,
-                    title: 'Базовая цифровая гигиена',
-                    description: 'Двухфакторная аутентификация, менеджеры паролей, распознавание фишинга. Анализ цифрового следа педагога.',
-                    materialsLink: 'materials.html',
-                    toolsLink: null
+                    name: 'Текстовые нейросети',
+                    description: 'Знакомство с текстовыми нейросетями, которые могут облегчить работу педагога',
+                    pdfFile: 'section_1.pdf'
                 },
                 {
                     id: 2,
-                    title: 'Освоение ФГИС «Моя школа»',
-                    description: 'Работа с электронным журналом, библиотекой ЦОК, облачным хранилищем материалов. Подключение к Сферум.',
-                    materialsLink: 'materials.html',
-                    toolsLink: null
+                    name: 'Нейросети для создания презентаций',
+                    description: 'Обзор ИИ-сервисов для автоматической генерации презентаций. Создание слайдов по текстовому описанию и готовым шаблонам.',
+                    pdfFile: 'section_2.pdf'
                 },
                 {
                     id: 3,
-                    title: 'Визуализация учебного материала',
-                    description: 'Создание инфографики, рабочих листов в Figma/Canva. Запись скринкастов. Монтаж коротких учебных видео.',
-                    materialsLink: null,
-                    toolsLink: 'tools.html#media'
+                    name: 'Нейросети для создания видео',
+                    description: 'Инструменты для генерации видео. Создание образовательных роликов, анимированного объяснительного контента и видеоуроков с аватарами.',
+                    pdfFile: 'section_3.pdf'
                 },
                 {
                     id: 4,
-                    title: 'ИИ-ассистент в планировании',
-                    description: 'Генерация КТП, дифференцированных заданий и критериев оценивания с помощью нейросетей (YandexGPT, GigaChat).',
-                    materialsLink: null,
-                    toolsLink: 'tools.html#info'
+                    name: 'Нейросети для создания аудио',
+                    description: 'Генерация речи, музыки и звуковых эффектов с помощью ИИ.  Озвучивание учебных материалов, создание подкастов и аудиолекций.',
+                    pdfFile: 'section_4.pdf'
                 },
                 {
                     id: 5,
-                    title: 'Геймификация и интерактив',
-                    description: 'Создание квестов, викторин, интерактивных упражнений в WordWall, Joyteka, LearningApps.',
-                    materialsLink: null,
-                    toolsLink: 'tools.html#comm'
-                },
-                {
-                    id: 6,
-                    title: 'Цифровое портфолио педагога',
-                    description: 'Оформление собственного сайта-портфолио на Tilda или создание профессионального канала в Сферум.',
-                    materialsLink: null,
-                    toolsLink: null
-                },
-                {
-                    id: 7,
-                    title: 'Наставничество и экспертиза',
-                    description: 'Выступление на педсовете, проведение мастер-класса для коллег, публикация методических разработок.',
-                    materialsLink: null,
-                    toolsLink: null
+                    name: 'Нейросети для создания фото',
+                    description: 'Генерация изображений и иллюстраций. Создание визуального контента для уроков, инфографики и дидактических материалов.',
+                    pdfFile: 'section_5.pdf'
                 }
             ];
 
-            // ---------- СОСТОЯНИЕ ----------
-            let completedSteps = new Array(stepsData.length).fill(false);
+            // Состояние: пройденные разделы (true/false) и раскрыт ли курс
+            let completedSections = new Array(sectionsData.length).fill(false);
+            let isCourseExpanded = true; // По умолчанию раскрыт, чтобы сразу видеть разделы
 
             // DOM элементы
-            const container = document.getElementById('roadmapContainer');
+            const sectionsList = document.getElementById('sectionsList');
+            const courseDetails = document.getElementById('courseDetails');
+            const expandBtn = document.getElementById('expandBtn');
+            const courseHeader = document.getElementById('courseHeader');
+            
+            const courseProgressFill = document.getElementById('courseProgressFill');
+            const courseProgressText = document.getElementById('courseProgressText');
+            
             const overallProgressText = document.getElementById('overallProgressText');
             const overallProgressBar = document.getElementById('overallProgressBar');
             const progressMessage = document.getElementById('progressMessage');
 
+            // ---------- ФУНКЦИЯ ПОКАЗА УВЕДОМЛЕНИЯ ----------
+            function showNotification(message, isError = false) {
+                // Удаляем старые уведомления
+                const oldNotifications = document.querySelectorAll('.notification');
+                oldNotifications.forEach(n => n.remove());
+                
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.textContent = message;
+                
+                if (isError) {
+                    notification.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+                }
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'fadeOut 0.3s ease-out';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+
+            // ---------- ФУНКЦИЯ СКАЧИВАНИЯ PDF ----------
+            function downloadPDF(pdfFileName, sectionName) {
+                const link = document.createElement('a');
+                link.href = pdfFileName;
+                link.download = pdfFileName;
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showNotification(`📥 Скачивание: "${sectionName}" → ${pdfFileName}`);
+                
+                // Подсказка на случай отсутствия файла
+                setTimeout(() => {
+                    showNotification(
+                        `💡 Если файл не скачался, положите "${pdfFileName}" в папку с сайтом.`,
+                        true
+                    );
+                }, 1500);
+            }
+
             // ---------- ЗАГРУЗКА ИЗ LOCALSTORAGE ----------
             function loadProgress() {
-                const saved = localStorage.getItem('teacherRoadmapProgress');
+                const saved = localStorage.getItem('teacherSectionsProgress');
                 if (saved) {
                     try {
                         const parsed = JSON.parse(saved);
-                        if (Array.isArray(parsed) && parsed.length === stepsData.length) {
-                            completedSteps = parsed;
+                        if (parsed.completedSections && parsed.completedSections.length === sectionsData.length) {
+                            completedSections = parsed.completedSections;
+                        }
+                        if (typeof parsed.isExpanded === 'boolean') {
+                            isCourseExpanded = parsed.isExpanded;
                         }
                     } catch (e) {
                         console.error('Ошибка загрузки прогресса:', e);
@@ -472,179 +623,192 @@
 
             // ---------- СОХРАНЕНИЕ В LOCALSTORAGE ----------
             function saveProgress() {
-                localStorage.setItem('teacherRoadmapProgress', JSON.stringify(completedSteps));
+                const toSave = {
+                    completedSections: completedSections,
+                    isExpanded: isCourseExpanded
+                };
+                localStorage.setItem('teacherSectionsProgress', JSON.stringify(toSave));
+                
+                // Для главной страницы сохраняем прогресс (совместимость с teacherCoursesProgress)
+                const completed = completedSections.filter(v => v === true).length;
+                const total = sectionsData.length;
+                const percentage = Math.round((completed / total) * 100);
+                
+                // Сохраняем в формате для teacherCoursesProgress (используется на главной)
+                const coursesProgress = sectionsData.map((section, idx) => ({
+                    id: section.id,
+                    name: section.name,
+                    completed: completedSections[idx]
+                }));
+                localStorage.setItem('teacherCoursesProgress', JSON.stringify(coursesProgress));
+                
+                // Сохраняем также статистику прогресса
+                localStorage.setItem('teacherRoadmapProgress', JSON.stringify({
+                    completed: completed,
+                    total: total,
+                    percentage: percentage
+                }));
             }
 
             // ---------- ПОДСЧЕТ ПРОГРЕССА ----------
             function calculateProgress() {
-                const completed = completedSteps.filter(v => v === true).length;
-                const total = stepsData.length;
+                const completed = completedSections.filter(v => v === true).length;
+                const total = sectionsData.length;
                 const percentage = Math.round((completed / total) * 100);
                 return { completed, total, percentage };
             }
 
-            // ---------- ОБНОВЛЕНИЕ ОБЩЕГО ПРОГРЕССА ----------
-            function updateOverallProgress() {
+            // ---------- ОБНОВЛЕНИЕ ВСЕХ ПРОГРЕСС-БАРОВ ----------
+            function updateAllProgress() {
                 const { completed, total, percentage } = calculateProgress();
                 
-                overallProgressText.textContent = `${percentage}%`;
+                // Обновляем прогресс курса
+                courseProgressFill.style.width = `${percentage}%`;
+                courseProgressText.textContent = `${completed}/${total} разделов пройдено (${percentage}%)`;
+                
+                // Обновляем общий прогресс
+                overallProgressText.textContent = `${percentage}% (${completed}/${total} разделов)`;
                 overallProgressBar.style.width = `${percentage}%`;
 
-                // Сообщение в зависимости от прогресса
                 if (percentage === 100) {
-                    progressMessage.innerHTML = '🎉 Поздравляем! Вы полностью завершили трекер цифрового развития! Получите сертификат эксперта.';
+                    progressMessage.innerHTML = '🎉 Поздравляем! Вы полностью изучили курс "Нейросети в работе педагога"!';
                 } else if (percentage >= 70) {
-                    progressMessage.innerHTML = `🚀 Отлично! Осталось всего ${total - completed} этапа до экспертного уровня!`;
+                    progressMessage.innerHTML = `🚀 Отлично! Осталось всего ${total - completed} раздел${total - completed === 1 ? '' : 'а'} до полного завершения!`;
                 } else if (percentage >= 40) {
-                    progressMessage.innerHTML = `📊 Хороший прогресс! Продолжайте в том же темпе.`;
+                    progressMessage.innerHTML = `📊 Хороший прогресс! Продолжайте изучать нейросети для работы.`;
                 } else if (percentage > 0) {
-                    progressMessage.innerHTML = `🌱 Отличное начало! Вы уже освоили ${completed} из ${total} этапов.`;
+                    progressMessage.innerHTML = `🌱 Отличное начало! Вы уже изучили ${completed} из ${total} разделов.`;
                 } else {
-                    progressMessage.innerHTML = `🎯 Отметьте выполненные этапы, чтобы увидеть прогресс`;
+                    progressMessage.innerHTML = `📚 Открывайте разделы, скачивайте PDF и отмечайте пройденные материалы. Изучайте нейросети разных типов!`;
                 }
             }
 
-            // ---------- ОТРИСОВКА ВСЕХ ЭТАПОВ ----------
-            function renderAllSteps() {
+            // ---------- ОТМЕТКА РАЗДЕЛА ----------
+            function toggleSection(sectionIndex) {
+                completedSections[sectionIndex] = !completedSections[sectionIndex];
+                saveProgress();
+                renderSections();
+                updateAllProgress();
+            }
+
+            // ---------- ОТРИСОВКА РАЗДЕЛОВ ----------
+            function renderSections() {
                 let html = '';
                 
-                stepsData.forEach((step, index) => {
-                    const isCompleted = completedSteps[index];
-                    const stepNumber = index + 1;
+                sectionsData.forEach((section, index) => {
+                    const isCompleted = completedSections[index];
                     
-                    // Определяем классы для маркера
-                    let markerClass = 'pending';
-                    let markerContent = stepNumber;
+                    // Выбор иконки в зависимости от типа нейросети
+                    let icon = '';
+                    if (section.id === 1) icon = '✍️';
+                    else if (section.id === 2) icon = '📊';
+                    else if (section.id === 3) icon = '🎬';
+                    else if (section.id === 4) icon = '🎵';
+                    else if (section.id === 5) icon = '🖼️';
                     
-                    if (isCompleted) {
-                        markerClass = 'completed';
-                        markerContent = '✓';
-                    } else if (index === 0 || completedSteps[index - 1]) {
-                        // Если предыдущий выполнен или это первый этап
-                        markerClass = 'inprogress';
-                        markerContent = stepNumber;
-                    }
-                    
-                    // Статус текст
-                    let statusText = '';
-                    let statusClass = '';
-                    
-                    if (isCompleted) {
-                        statusText = '✓ Выполнено • 100%';
-                        statusClass = 'status-completed';
-                    } else if (index === 0 || completedSteps[index - 1]) {
-                        statusText = '🔄 В процессе • 0%';
-                        statusClass = 'status-inprogress';
-                    } else {
-                        statusText = '⏳ Заблокировано';
-                        statusClass = 'status-pending';
-                    }
-
-                    // Ширина прогресс-бара для этапа
-                    const stepProgressWidth = isCompleted ? '100%' : '0%';
-
-                    // Действия (кнопки)
-                    let actionsHtml = '';
-                    
-                    if (step.materialsLink) {
-                        actionsHtml += `<a href="${step.materialsLink}" class="btn">📖 Материалы</a>`;
-                    }
-                    if (step.toolsLink) {
-                        actionsHtml += `<a href="${step.toolsLink}" class="btn btn-primary">🛠️ Инструменты</a>`;
-                    }
-                    if (!step.materialsLink && !step.toolsLink) {
-                        if (index === 6) {
-                            actionsHtml += `<a href="test.html" class="btn btn-primary">📋 Пройти итоговый тест</a>`;
-                        } else {
-                            actionsHtml += `<a href="#" class="btn">📹 Смотреть вебинар</a>`;
-                        }
-                    }
-
                     html += `
-                        <div class="roadmap-step ${isCompleted ? 'completed' : ''}" data-step-index="${index}">
-                            <div class="step-marker ${markerClass}">${markerContent}</div>
-                            
-                            <div class="step-header">
-                                <div class="step-title-section">
-                                    <span class="step-title">${stepNumber}. ${step.title}</span>
-                                    <span class="step-status ${statusClass}">${statusText}</span>
-                                </div>
+                        <div class="section-item">
+                            <div class="section-info">
+                                <div class="section-number">${icon} Раздел ${section.id}</div>
+                                <div class="section-name">${section.name}</div>
+                                <div class="section-desc">${section.description}</div>
                             </div>
-                            
-                            <div class="step-description">${step.description}</div>
-                            
-                            <div class="step-checkbox-wrapper">
+                            <div class="section-actions">
+                                <button class="pdf-btn" 
+                                        data-section-index="${index}"
+                                        data-pdf-file="${section.pdfFile}"
+                                        data-section-name="${section.name}">
+                                    📄 Скачать PDF
+                                </button>
                                 <input type="checkbox" 
-                                       class="step-checkbox" 
-                                       id="step_${index}" 
-                                       data-step-index="${index}"
-                                       ${isCompleted ? 'checked' : ''}>
-                                <label for="step_${index}" class="step-checkbox-label">
-                                    ${isCompleted ? '✅ Этап пройден' : '☐ Отметить как выполненный'}
-                                </label>
-                            </div>
-                            
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: ${stepProgressWidth};"></div>
-                            </div>
-                            
-                            <div class="step-actions">
-                                ${actionsHtml}
+                                       class="section-checkbox"
+                                       data-section-index="${index}"
+                                       ${isCompleted ? 'checked' : ''}
+                                       title="Отметить раздел как пройденный">
                             </div>
                         </div>
                     `;
                 });
-
-                container.innerHTML = html;
-
-                // Навешиваем обработчики на все чекбоксы
-                document.querySelectorAll('.step-checkbox').forEach(checkbox => {
-                    checkbox.addEventListener('change', function(e) {
-                        const stepIndex = parseInt(this.dataset.stepIndex);
-                        const isChecked = this.checked;
-                        
-                        // Проверяем, можно ли отметить этот этап
-                        if (isChecked) {
-                            // Нельзя отметить, если предыдущий не выполнен
-                            if (stepIndex > 0 && !completedSteps[stepIndex - 1]) {
-                                alert('⚠️ Сначала выполните предыдущий этап!');
-                                this.checked = false;
-                                return;
-                            }
+                
+                sectionsList.innerHTML = html;
+                
+                // Навешиваем обработчики на PDF кнопки
+                document.querySelectorAll('.pdf-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const pdfFile = this.dataset.pdfFile;
+                        const sectionName = this.dataset.sectionName;
+                        if (pdfFile) {
+                            downloadPDF(pdfFile, sectionName);
                         }
-                        
-                        // Обновляем состояние
-                        completedSteps[stepIndex] = isChecked;
-                        
-                        // Сохраняем
-                        saveProgress();
-                        
-                        // Полностью перерисовываем
-                        renderAllSteps();
-                        updateOverallProgress();
                     });
                 });
+                
+                // Навешиваем обработчики на чекбоксы разделов
+                document.querySelectorAll('.section-checkbox').forEach(checkbox => {
+                    checkbox.addEventListener('change', function(e) {
+                        e.stopPropagation();
+                        const sectionIndex = parseInt(this.dataset.sectionIndex);
+                        toggleSection(sectionIndex);
+                        // Не вызываем renderSections рекурсивно, toggleSection сам вызовет
+                    });
+                });
+            }
 
-                updateOverallProgress();
+            // ---------- РАСКРЫТИЕ/СВЕРТЫВАНИЕ КУРСА ----------
+            function toggleCourseExpand() {
+                isCourseExpanded = !isCourseExpanded;
+                saveProgress();
+                
+                if (isCourseExpanded) {
+                    courseDetails.classList.add('open');
+                    expandBtn.textContent = '▲';
+                } else {
+                    courseDetails.classList.remove('open');
+                    expandBtn.textContent = '▼';
+                }
             }
 
             // ---------- СБРОС ПРОГРЕССА ----------
             function resetProgress() {
-                if (confirm('Вы уверены, что хотите сбросить весь прогресс? Все отмеченные этапы будут сняты.')) {
-                    completedSteps = new Array(stepsData.length).fill(false);
+                if (confirm('Вы уверены, что хотите сбросить весь прогресс? Все отметки о пройденных разделах будут удалены.')) {
+                    completedSections = new Array(sectionsData.length).fill(false);
                     saveProgress();
-                    renderAllSteps();
-                    updateOverallProgress();
+                    renderSections();
+                    updateAllProgress();
+                    showNotification('🔄 Весь прогресс сброшен');
                 }
             }
 
             // ---------- ИНИЦИАЛИЗАЦИЯ ----------
             function init() {
                 loadProgress();
-                renderAllSteps();
                 
-                // Обработчик кнопки сброса
-                document.getElementById('resetProgressBtn').addEventListener('click', resetProgress);
+                // Устанавливаем состояние раскрытия
+                if (isCourseExpanded) {
+                    courseDetails.classList.add('open');
+                    expandBtn.textContent = '▲';
+                } else {
+                    courseDetails.classList.remove('open');
+                    expandBtn.textContent = '▼';
+                }
+                
+                renderSections();
+                updateAllProgress();
+                
+                // Навешиваем обработчики
+                expandBtn.addEventListener('click', toggleCourseExpand);
+                courseHeader.addEventListener('click', function(e) {
+                    // Чтобы не срабатывало при клике на кнопку внутри
+                    if (e.target !== expandBtn && !expandBtn.contains(e.target)) {
+                        toggleCourseExpand();
+                    }
+                });
+                
+                const resetBtn = document.getElementById('resetProgressBtn');
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', resetProgress);
+                }
             }
 
             init();

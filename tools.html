@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Инструменты — ЦифроПедагог 2026</title>
+    <title>Инструменты — Навигатор цифровой грамотности 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
@@ -38,7 +38,6 @@
             padding: 0 24px;
         }
 
-        /* Навигация */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -136,6 +135,8 @@
             transition: all 0.3s;
             cursor: pointer;
             box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+            display: block;
         }
 
         .tool-card:hover {
@@ -192,156 +193,112 @@
 <body>
     <div class="container">
         <nav class="navbar">
-            <div class="logo">🎓 ЦифроПедагог</div>
+            <div class="logo">🎓 Навигатор цифровой грамотности</div>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Главная</a>
                 <a href="test.html" class="nav-link">📋 Тест</a>
                 <a href="tools.html" class="nav-link active">🛠️ Инструменты</a>
-                <a href="roadmap.html" class="nav-link">📈 Трекер</a>
-                <a href="materials.html" class="nav-link">📚 Библиотека</a>
-            </div>
+                <a href="roadmap.html" class="nav-link">📈 ИИ в работе педагога</a>
+                            </div>
         </nav>
 
         <div class="glass-card">
             <h1>🛠️ Каталог цифровых инструментов</h1>
-            <p style="color: var(--gray); font-size: 1.2rem; margin-bottom: 30px;">Проверенные сервисы для эффективной работы педагога в 2026 году</p>
+            <p style="color: var(--gray); font-size: 1.2rem; margin-bottom: 30px;">Проверенные образовательные ресурсы и сервисы для педагога</p>
 
-            <!-- Информационная грамотность -->
-            <section id="info" class="category-section">
-                <h2>🔍 Информационная грамотность</h2>
+            <!-- Официальные документы и госплатформы -->
+            <section id="official" class="category-section">
+                <h2>📜 Официальные документы и государственные платформы</h2>
                 <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-icon">🤖</div>
-                        <div class="tool-name">YandexGPT</div>
-                        <div class="tool-desc">ИИ-ассистент для поиска, анализа и генерации текстов</div>
-                        <span class="tool-tag">ИИ</span>
-                        <span class="tool-tag">Поиск</span>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">🔎</div>
-                        <div class="tool-name">Perplexity AI</div>
-                        <div class="tool-desc">Умный поиск с цитированием источников</div>
-                        <span class="tool-tag">ИИ-поиск</span>
-                        <span class="tool-tag">Фактчекинг</span>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">📊</div>
-                        <div class="tool-name">Google Scholar</div>
-                        <div class="tool-desc">Поиск научных статей и публикаций</div>
-                        <span class="tool-tag">Наука</span>
-                        <span class="tool-tag">Цитирование</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Компьютерная грамотность -->
-            <section id="computer" class="category-section">
-                <h2>💻 Компьютерная грамотность</h2>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-icon">☁️</div>
-                        <div class="tool-name">Яндекс 360</div>
-                        <div class="tool-desc">Облачное хранилище, документы, почта</div>
-                        <span class="tool-tag">Облако</span>
-                        <span class="tool-tag">Офис</span>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">🏫</div>
-                        <div class="tool-name">ФГИС «Моя школа»</div>
-                        <div class="tool-desc">Госплатформа с библиотекой ЦОК и дневником</div>
-                        <span class="tool-tag">ФГОС</span>
-                        <span class="tool-tag">Обязательно</span>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">🎥</div>
-                        <div class="tool-name">Сферум (VK)</div>
-                        <div class="tool-desc">Отечественная видеосвязь и мессенджер</div>
-                        <span class="tool-tag">Видео</span>
-                        <span class="tool-tag">Чат</span>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">📝</div>
-                        <div class="tool-name">МойОфис</div>
-                        <div class="tool-desc">Российский пакет офисных программ</div>
-                        <span class="tool-tag">Офис</span>
-                        <span class="tool-tag">Импортозамещение</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Медийная грамотность -->
-            <section id="media" class="category-section">
-                <h2>🎨 Медийная грамотность</h2>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-icon">🎬</div>
-                        <div class="tool-name">Gamma.app</div>
-                        <div class="tool-desc">ИИ-генерация презентаций за минуту</div>
-                        <span class="tool-tag">ИИ</span>
-                        <span class="tool-tag">Презентации</span>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">🖼️</div>
-                        <div class="tool-name">Canva</div>
-                        <div class="tool-desc">Дизайн, инфографика, рабочие листы</div>
-                        <span class="tool-tag">Дизайн</span>
-                        <span class="tool-tag">Визуал</span>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">✂️</div>
-                        <div class="tool-name">CapCut</div>
-                        <div class="tool-desc">Простой видеомонтаж для уроков</div>
-                        <span class="tool-tag">Видео</span>
-                        <span class="tool-tag">Монтаж</span>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">🎨</div>
-                        <div class="tool-name">Kandinsky / Шедеврум</div>
-                        <div class="tool-desc">Генерация изображений по описанию</div>
-                        <span class="tool-tag">ИИ</span>
-                        <span class="tool-tag">Изображения</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Коммуникативная грамотность -->
-            <section id="comm" class="category-section">
-                <h2>🤝 Коммуникативная грамотность</h2>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-icon">🎮</div>
-                        <div class="tool-name">WordWall</div>
-                        <div class="tool-desc">Интерактивные викторины и игры</div>
-                        <span class="tool-tag">Геймификация</span>
-                        <span class="tool-tag">Тесты</span>
-                    </div>
-                    <div class="tool-card">
+                    <a href="https://docs.edu.gov.ru/document/7afc3a509c46836afbb9e9ea2fc82c18/" target="_blank" class="tool-card" rel="noopener noreferrer">
                         <div class="tool-icon">📋</div>
-                        <div class="tool-name">Miro / sBoard</div>
-                        <div class="tool-desc">Онлайн-доски для совместной работы</div>
-                        <span class="tool-tag">Коллаборация</span>
-                        <span class="tool-tag">Мозговой штурм</span>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">💬</div>
-                        <div class="tool-name">Telegram</div>
-                        <div class="tool-desc">Каналы и боты для обратной связи</div>
-                        <span class="tool-tag">Мессенджер</span>
-                        <span class="tool-tag">Боты</span>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">🗳️</div>
-                        <div class="tool-name">Mentimeter</div>
-                        <div class="tool-desc">Опросы и облака слов в реальном времени</div>
-                        <span class="tool-tag">Опросы</span>
-                        <span class="tool-tag">Интерактив</span>
-                    </div>
+                        <div class="tool-name">Приказ Минпросвещения об ЭОР</div>
+                        <div class="tool-desc">Официальный документ — Приказ Министерства просвещения РФ об электронных образовательных ресурсах</div>
+                        <span class="tool-tag">Документ</span>
+                        <span class="tool-tag">ФГОС</span>
+                    </a>
+                    <a href="https://resh.edu.ru/" target="_blank" class="tool-card" rel="noopener noreferrer">
+                        <div class="tool-icon">🏫</div>
+                        <div class="tool-name">Российская электронная школа (РЭШ)</div>
+                        <div class="tool-desc">Государственная платформа с интерактивными уроками по всем предметам</div>
+                        <span class="tool-tag">Госплатформа</span>
+                        <span class="tool-tag">Уроки</span>
+                    </a>
+                    <a href="https://uchebnik.mos.ru/" target="_blank" class="tool-card" rel="noopener noreferrer">
+                        <div class="tool-icon">📚</div>
+                        <div class="tool-name">Московская электронная школа (МЭШ)</div>
+                        <div class="tool-desc">Библиотека электронных материалов и интерактивных учебников</div>
+                        <span class="tool-tag">Библиотека</span>
+                        <span class="tool-tag">Москва</span>
+                    </a>
                 </div>
             </section>
+
+            <!-- Платформы для дистанционного и самостоятельного обучения -->
+            <section id="distance" class="category-section">
+                <h2>💻 Платформы для дистанционного и самостоятельного обучения</h2>
+                <div class="tools-grid">
+                    <a href="https://www.sferum.ru/" target="_blank" class="tool-card" rel="noopener noreferrer">
+                        <div class="tool-icon">💬</div>
+                        <div class="tool-name">Сферум</div>
+                        <div class="tool-desc">Отечественная платформа для видеосвязи и коммуникации в образовании</div>
+                        <span class="tool-tag">Видеосвязь</span>
+                        <span class="tool-tag">Мессенджер</span>
+                    </a>
+                    <a href="https://uchi.ru/" target="_blank" class="tool-card" rel="noopener noreferrer">
+                        <div class="tool-icon">📖</div>
+                        <div class="tool-name">Учи.ру</div>
+                        <div class="tool-desc">Интерактивные курсы по школьным предметам и подготовка к ВПР/ОГЭ</div>
+                        <span class="tool-tag">Интерактив</span>
+                        <span class="tool-tag">1-11 классы</span>
+                    </a>
+                    <a href="https://www.yaklass.ru/" target="_blank" class="tool-card" rel="noopener noreferrer">
+                        <div class="tool-icon">🎓</div>
+                        <div class="tool-name">ЯКласс</div>
+                        <div class="tool-desc">Образовательная платформа с проверочными работами и теорией</div>
+                        <span class="tool-tag">Тесты</span>
+                        <span class="tool-tag">Проверка знаний</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Вспомогательные ресурсы для уроков и домашнего изучения -->
+            <section id="auxiliary" class="category-section">
+                <h2>🛠️ Вспомогательные ресурсы для уроков и самостоятельного изучения</h2>
+                <div class="tools-grid">
+                    <a href="https://learningapps.org/" target="_blank" class="tool-card" rel="noopener noreferrer">
+                        <div class="tool-icon">🎮</div>
+                        <div class="tool-name">LearningApps.org</div>
+                        <div class="tool-desc">Создание интерактивных упражнений, викторин и игр для уроков</div>
+                        <span class="tool-tag">Интерактив</span>
+                        <span class="tool-tag">Игры</span>
+                    </a>
+                    <a href="https://vznaniya.com/" target="_blank" class="tool-card" rel="noopener noreferrer">
+                        <div class="tool-icon">🧠</div>
+                        <div class="tool-name">Взнания</div>
+                        <div class="tool-desc">Платформа для создания интерактивных уроков и проверки знаний</div>
+                        <span class="tool-tag">Уроки</span>
+                        <span class="tool-tag">Тестирование</span>
+                    </a>
+                    <a href="https://onlinetestpad.com/" target="_blank" class="tool-card" rel="noopener noreferrer">
+                        <div class="tool-icon">📝</div>
+                        <div class="tool-name">Online Test Pad</div>
+                        <div class="tool-desc">Конструктор тестов, опросов, кроссвордов и логических игр</div>
+                        <span class="tool-tag">Тесты</span>
+                        <span class="tool-tag">Конструктор</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Краткая инструкция -->
+            <div style="margin-top: 40px; padding: 20px; background: #e0e7ff; border-radius: 24px;">
+                <p style="color: var(--dark); font-weight: 500; margin-bottom: 8px;">💡 Для перехода на ресурс — нажмите на карточку с инструментом. Все ссылки ведут на официальные и проверенные сайты.</p>
+                <p style="color: var(--gray); font-size: 0.9rem;">Рекомендуется использовать современные браузеры (Chrome, Edge, Firefox, Safari) для корректной работы всех сервисов.</p>
+            </div>
         </div>
 
         <footer class="footer">
-            <p>🖥️ ЦифроПедагог 2026 • Все инструменты проверены экспертами</p>
+            <p>🖥️ Навигатор цифровой грамотности 2026 • Все инструменты проверены экспертами</p>
         </footer>
     </div>
 </body>
