@@ -594,13 +594,7 @@
                 
                 showNotification(`📥 Скачивание: "${sectionName}" → ${pdfFileName}`);
                 
-                // Подсказка на случай отсутствия файла
-                setTimeout(() => {
-                    showNotification(
-                        `💡 Если файл не скачался, положите "${pdfFileName}" в папку с сайтом.`,
-                        true
-                    );
-                }, 1500);
+
             }
 
             // ---------- ЗАГРУЗКА ИЗ LOCALSTORAGE ----------
