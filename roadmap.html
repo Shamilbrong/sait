@@ -111,7 +111,6 @@
             margin-bottom: 16px;
         }
 
-        /* Главный курс */
         .main-course {
             background: white;
             border-radius: 32px;
@@ -121,7 +120,6 @@
             margin: 30px 0;
         }
 
-        /* Заголовок курса */
         .course-header {
             display: flex;
             justify-content: space-between;
@@ -186,7 +184,6 @@
             transform: scale(1.05);
         }
 
-        /* Содержимое курса (разделы) */
         .course-details {
             max-height: 0;
             overflow: hidden;
@@ -195,7 +192,7 @@
         }
 
         .course-details.open {
-            max-height: 2000px;
+            max-height: 3500px;
             transition: max-height 0.5s ease-in;
         }
 
@@ -222,7 +219,6 @@
             color: var(--dark);
         }
 
-        /* Список разделов */
         .sections-list {
             display: flex;
             flex-direction: column;
@@ -231,23 +227,36 @@
 
         .section-item {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: column;
             padding: 20px 24px;
             background: white;
             border-radius: 24px;
             border: 1px solid #e2e8f0;
             transition: all 0.2s;
+            gap: 15px;
         }
 
         .section-item:hover {
             border-color: var(--primary);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transform: translateX(4px);
+        }
+
+        .section-item.completed {
+            border-color: var(--success);
+            background: #f0fdf4;
+        }
+
+        .section-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .section-info {
-            flex: 1;
+            flex: 2;
+            min-width: 200px;
         }
 
         .section-number {
@@ -276,29 +285,53 @@
 
         .section-actions {
             display: flex;
-            gap: 16px;
+            gap: 10px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
-        .pdf-btn {
+        .pdf-btn, .test-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 24px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            text-decoration: none;
+            padding: 10px 20px;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            text-decoration: none;
+        }
+
+        .pdf-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
         }
 
         .pdf-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px -5px rgba(79, 70, 229, 0.4);
+        }
+
+        .test-btn {
+            background: linear-gradient(135deg, var(--accent), #0d9488);
+            color: white;
+        }
+
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -5px rgba(20, 184, 166, 0.4);
+        }
+
+        .test-btn.passed {
+            background: var(--success);
+            cursor: default;
+        }
+
+        .test-btn.passed:hover {
+            transform: none;
+            box-shadow: none;
         }
 
         .section-checkbox {
@@ -308,48 +341,216 @@
             accent-color: var(--success);
         }
 
-        /* Прогресс курса */
-        .course-progress {
+        .section-checkbox:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* ---------- МОДАЛЬНОЕ ОКНО ТЕСТА ---------- */
+        .test-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .test-modal {
+            background: white;
+            border-radius: 32px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 36px 40px;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .test-modal h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .test-modal .subtitle {
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .test-modal .question-block {
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .test-modal .question-block:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .test-modal .q-text {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .test-modal .q-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-left: 8px;
+        }
+
+        .test-modal .q-options label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #374151;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+
+        .test-modal .q-options label:hover {
+            background: #f1f5f9;
+        }
+
+        .test-modal .q-options input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .test-modal .q-options label.correct {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .test-modal .q-options label.wrong {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .test-modal .test-actions {
+            display: flex;
+            gap: 16px;
             margin-top: 28px;
             padding-top: 20px;
             border-top: 1px solid #e2e8f0;
+            flex-wrap: wrap;
         }
 
-        .course-progress-bar {
-            height: 8px;
+        .test-modal .test-actions .btn {
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .test-modal .test-actions .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .test-modal .test-actions .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .test-modal .test-actions .btn-secondary {
             background: #e2e8f0;
-            border-radius: 10px;
-            overflow: hidden;
+            color: var(--dark);
+        }
+
+        .test-modal .test-actions .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+        .test-modal .test-result {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .test-modal .test-result .icon {
+            font-size: 4rem;
             margin-bottom: 10px;
         }
 
-        .course-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--success), var(--primary));
-            border-radius: 10px;
-            transition: width 0.3s;
+        .test-modal .test-result h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
-        .course-progress-text {
-            font-size: 0.9rem;
+        .test-modal .test-result p {
             color: var(--gray);
-            font-weight: 500;
+            font-size: 1.1rem;
         }
 
-        /* Общий прогресс */
-        .overall-progress-card {
+        .test-modal .test-result .score {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 12px 0;
+        }
+
+        /* ---------- ПРОГРЕСС (ОДИН БЛОК) ---------- */
+        .progress-card {
             margin-top: 30px;
-            padding: 24px;
+            padding: 24px 28px;
             background: white;
             border-radius: 24px;
             border: 1px solid #e2e8f0;
+        }
+
+        .progress-card .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-card .progress-header span:first-child {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .progress-card .progress-header span:last-child {
+            font-weight: 700;
+            color: var(--primary);
         }
 
         .progress-bar {
             height: 10px;
             background: #e2e8f0;
             border-radius: 10px;
-            margin: 12px 0;
             overflow: hidden;
         }
 
@@ -358,6 +559,12 @@
             border-radius: 10px;
             transition: width 0.5s ease;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .progress-message {
+            color: var(--gray);
+            margin-top: 12px;
+            font-size: 0.95rem;
         }
 
         .btn-danger {
@@ -398,9 +605,13 @@
             padding: 14px 28px;
             border-radius: 16px;
             font-weight: 500;
-            z-index: 10000;
+            z-index: 10001;
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
             animation: slideIn 0.3s ease-out;
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
         }
 
         @keyframes slideIn {
@@ -420,9 +631,11 @@
             .course-header { padding: 20px; flex-direction: column; gap: 15px; text-align: center; }
             .course-title { font-size: 1.4rem; }
             .sections-container { padding: 20px; }
-            .section-item { flex-direction: column; gap: 15px; text-align: center; }
+            .section-row { flex-direction: column; align-items: stretch; text-align: center; }
             .section-actions { justify-content: center; }
-            .pdf-btn { padding: 8px 20px; font-size: 0.85rem; }
+            .test-modal { padding: 24px; }
+            .test-modal .test-actions { flex-direction: column; }
+            .test-modal .test-actions .btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -435,7 +648,7 @@
                 <a href="test.html" class="nav-link">📋 Тест</a>
                 <a href="tools.html" class="nav-link">🛠️ Инструменты</a>
                 <a href="roadmap.html" class="nav-link active">📈 ИИ в работе педагога</a>
-                          </div>
+            </div>
         </nav>
 
         <div class="glass-card">
@@ -444,9 +657,7 @@
                 Изучите курс по нейросетям в образовании. В курсе 5 разделов, посвященных различным типам генеративных нейросетей.
             </p>
             
-            <!-- Главный курс -->
             <div class="main-course" id="mainCourse">
-                <!-- Заголовок курса -->
                 <div class="course-header" id="courseHeader">
                     <div class="course-info">
                         <span class="course-badge">🌟 Основной курс</span>
@@ -456,7 +667,6 @@
                     <button class="expand-btn" id="expandBtn">▼</button>
                 </div>
 
-                <!-- Содержимое курса (разделы) -->
                 <div class="course-details" id="courseDetails">
                     <div class="sections-container">
                         <div class="sections-header">
@@ -464,140 +674,358 @@
                             <h3>Разделы курса</h3>
                         </div>
                         
-                        <div class="sections-list" id="sectionsList">
-                            <!-- Разделы будут сгенерированы через JavaScript -->
-                        </div>
-
-                        <!-- Прогресс курса -->
-                        <div class="course-progress" id="courseProgress">
-                            <div class="course-progress-bar">
-                                <div class="course-progress-fill" id="courseProgressFill" style="width: 0%;"></div>
-                            </div>
-                            <div class="course-progress-text" id="courseProgressText">0/5 разделов пройдено (0%)</div>
-                        </div>
+                        <div class="sections-list" id="sectionsList"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Общий прогресс (он же прогресс курса, так как курс один) -->
-            <div class="overall-progress-card">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: var(--dark); font-weight: 600;">📊 Прогресс изучения курса</span>
-                    <span style="color: var(--primary); font-weight: 700;" id="overallProgressText">0%</span>
+            <!-- ЕДИНЫЙ БЛОК ПРОГРЕССА -->
+            <div class="progress-card">
+                <div class="progress-header">
+                    <span>📊 Прогресс изучения курса</span>
+                    <span id="overallProgressText">0%</span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="overallProgressBar" style="width: 0%;"></div>
                 </div>
-                <p style="color: var(--gray); margin-top: 12px;" id="progressMessage">🎯 Отмечайте разделы как пройденные, чтобы отслеживать прогресс</p>
+                <p class="progress-message" id="progressMessage">🎯 Пройдите тесты после каждой лабораторной работы, чтобы отметить раздел как завершенный</p>
             </div>
 
-            <!-- Кнопка сброса -->
             <div class="reset-section">
                 <button class="btn-danger" id="resetProgressBtn">
                     🔄 Сбросить весь прогресс
                 </button>
             </div>
         </div>
-
-        <footer class="footer">
-            <p>🖥️ Навигатор цифровой грамотности • Прогресс сохраняется в вашем браузере</p>
-        </footer>
     </div>
 
     <script>
         (function() {
             "use strict";
 
-            // ---------- ОБНОВЛЕННЫЕ ДАННЫЕ: 5 РАЗДЕЛОВ КУРСА ----------
-            // Новые названия и описания разделов
+            // ============================================================
+            // ДАННЫЕ РАЗДЕЛОВ С ТЕСТАМИ
+            // ============================================================
             const sectionsData = [
                 {
                     id: 1,
                     name: 'Текстовые нейросети',
-                    description: 'Знакомство с текстовыми нейросетями, которые могут облегчить работу педагога',
-                    pdfFile: 'section_1.pdf'
+                    description: 'Знакомство с текстовыми нейросетями, которые могут облегчить работу педагога: ChatGPT, YandexGPT, GigaChat и др.',
+                    pdfFile: 'section_1.pdf',
+                    tests: [
+                        {
+                            question: 'Какова основная цель лабораторной работы по текстовым нейросетям?',
+                            options: [
+                                'Научиться программировать на Python',
+                                'Развить навыки работы с текстом и научиться составлять правильные промпты',
+                                'Изучить историю развития искусственного интеллекта',
+                                'Научиться монтировать видео'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какую нейросеть рассматривают в работе и по какой ссылке?',
+                            options: [
+                                'ChatGPT — https://chatgpt.com/',
+                                'Yandex GPT — https://alice.yandex.ru/',
+                                'Midjourney — https://midjourney.com/',
+                                'Suno — https://suno.com/'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'В чем разница между использованием нейросети зарегистрированным и незарегистрированным пользователем?',
+                            options: [
+                                'Зарегистрированным пользователям доступно больше языков',
+                                'Зарегистрированным пользователям доступны функции «рассуждение» и «исследование»',
+                                'Зарегистрированным пользователям не нужен интернет',
+                                'Разницы нет, функции одинаковые'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'К чему приводит «неправильный» (короткий) промпт при создании заданий?',
+                            options: [
+                                'К более творческим и интересным заданиям',
+                                'К сложным предложениям, неподходящей лексике и заданиям не по теме',
+                                'К экономии времени на проверке',
+                                'К автоматическому исправлению ошибок'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какие элементы должен содержать подробный промпт для получения качественного результата?',
+                            options: [
+                                'Только тему урока',
+                                'Возраст, тему, примеры, лексику, формат заданий',
+                                'Только количество заданий',
+                                'Имя учителя и номер школы'
+                            ],
+                            correct: 1
+                        }
+                    ]
                 },
                 {
                     id: 2,
                     name: 'Нейросети для создания презентаций',
                     description: 'Обзор ИИ-сервисов для автоматической генерации презентаций. Создание слайдов по текстовому описанию и готовым шаблонам.',
-                    pdfFile: 'section_2.pdf'
+                    pdfFile: 'section_2.pdf',
+                    tests: [
+                        {
+                            question: 'Какая нейросеть используется в работе для создания презентаций?',
+                            options: ['Pika', 'Gamma', 'Suno', 'Midjourney'],
+                            correct: 1
+                        },
+                        {
+                            question: 'В чем основное отличие (ограничение) этой нейросети от той, что использовалась в первой работе?',
+                            options: [
+                                'Она не умеет работать с текстом',
+                                'Количество презентаций ограничено',
+                                'Она работает только на английском языке',
+                                'Она платная и нет бесплатной версии'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какие действия необходимо выполнить перед нажатием кнопки «Сгенерировать»?',
+                            options: [
+                                'Написать полный текст презентации вручную',
+                                'Настроить оформление: стиль, текст, размер, расположение',
+                                'Загрузить видеофайл',
+                                'Выбрать музыкальное сопровождение'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какие возможности для редактирования готовой презентации перечислены в работе?',
+                            options: [
+                                'Менять местами блоки текста и слайды, генерировать отдельный слайд заново',
+                                'Только менять шрифт',
+                                'Только добавлять картинки',
+                                'Редактирование недоступно'
+                            ],
+                            correct: 0
+                        },
+                        {
+                            question: 'Какую основную функцию, помимо генерации, выполняет нейросеть Gamma в работе педагога?',
+                            options: [
+                                'Проверяет домашние задания',
+                                'Помогает создать индивидуальную презентацию в едином стиле',
+                                'Заменяет учителя на уроке',
+                                'Переводит тексты на другие языки'
+                            ],
+                            correct: 1
+                        }
+                    ]
                 },
                 {
                     id: 3,
                     name: 'Нейросети для создания видео',
                     description: 'Инструменты для генерации видео. Создание образовательных роликов, анимированного объяснительного контента и видеоуроков с аватарами.',
-                    pdfFile: 'section_3.pdf'
+                    pdfFile: 'section_3.pdf',
+                    tests: [
+                        {
+                            question: 'Какие ключевые функции есть у нейросетей для создания видео (например, Pika)?',
+                            options: [
+                                'Оживлять фото, создавать видео по описанию',
+                                'Только озвучивать текст',
+                                'Только создавать презентации',
+                                'Проверять грамматику'
+                            ],
+                            correct: 0
+                        },
+                        {
+                            question: 'Какое ограничение существует у бесплатной версии нейросети Pika?',
+                            options: [
+                                'Нельзя зарегистрироваться',
+                                'Есть ограничение на количество бесплатных генераций',
+                                'Нельзя использовать на русском языке',
+                                'Максимальная длина видео — 1 минута'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Для какой педагогической цели в работе было создано видео с котенком?',
+                            options: [
+                                'Для урока биологии',
+                                'Для изучения новой лексики к уроку английского языка',
+                                'Для урока физкультуры',
+                                'Для родительского собрания'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какие важные детали должны быть указаны в промпте для генерации видео, чтобы результат соответствовал ожиданиям?',
+                            options: [
+                                'Только название видео',
+                                'Действия, движения, стиль, настроение, камера',
+                                'Только цвет фона',
+                                'Имя режиссера'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какие задачи помогает решать использование видео-нейросетей в образовательном процессе?',
+                            options: [
+                                'Только проверка знаний',
+                                'Сделать процесс ярким, увлекательным, повысить мотивацию',
+                                'Заменить все учебники',
+                                'Убрать устные ответы'
+                            ],
+                            correct: 1
+                        }
+                    ]
                 },
                 {
                     id: 4,
-                    name: 'Нейросети для создания аудио',
-                    description: 'Генерация речи, музыки и звуковых эффектов с помощью ИИ.  Озвучивание учебных материалов, создание подкастов и аудиолекций.',
-                    pdfFile: 'section_4.pdf'
+                    name: 'Нейросети для создания фото',
+                    description: 'Генерация изображений и иллюстраций. Создание визуального контента для уроков, инфографики и дидактических материалов.',
+                    pdfFile: 'section_4.pdf',
+                    tests: [
+                        {
+                            question: 'Назовите нейросеть, используемую в работе, и какое ограничение по количеству попыток она имеет для бесплатных пользователей.',
+                            options: [
+                                'Midjourney — 5 попыток в день',
+                                'ChatGPT — 7–8 попыток в день',
+                                'Pika — 10 попыток в день',
+                                'Suno — без ограничений'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'На каком языке рекомендуется задавать промпт и почему?',
+                            options: [
+                                'Только на русском, чтобы было понятнее',
+                                'На английском, так как нейросеть понимает его чуть лучше и делает работы точнее',
+                                'На любом, нейросеть переводит сама',
+                                'Только на китайском'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'В каком стиле было предложено создать персонажа для примера?',
+                            options: [
+                                'В стиле аниме',
+                                'В стиле мультфильмов Disney',
+                                'В стиле реализм',
+                                'В стиле пиксельной графики'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какие функции, помимо генерации изображения по описанию, перечислены в работе?',
+                            options: [
+                                'Соединение изображений, наложение стилей, генерация подобного',
+                                'Только изменение размера',
+                                'Только добавление надписей',
+                                'Только удаление фона'
+                            ],
+                            correct: 0
+                        },
+                        {
+                            question: 'Какое задание предлагается выполнить для самостоятельной работы?',
+                            options: [
+                                'Создать изображение в стиле мультфильма на основе обычного изображения',
+                                'Написать статью о фотоискусстве',
+                                'Смонтировать видео из фото',
+                                'Сделать коллаж вручную'
+                            ],
+                            correct: 0
+                        }
+                    ]
                 },
                 {
                     id: 5,
-                    name: 'Нейросети для создания фото',
-                    description: 'Генерация изображений и иллюстраций. Создание визуального контента для уроков, инфографики и дидактических материалов.',
-                    pdfFile: 'section_5.pdf'
+                    name: 'Нейросети для создания аудио',
+                    description: 'Генерация речи, музыки и звуковых эффектов с помощью ИИ. Озвучивание учебных материалов, создание подкастов и аудиолекций.',
+                    pdfFile: 'section_5.pdf',
+                    tests: [
+                        {
+                            question: 'Какая нейросеть для работы с аудио рассматривается в работе?',
+                            options: ['Pika', 'Gamma', 'Suno', 'Alice'],
+                            correct: 2
+                        },
+                        {
+                            question: 'Какой предмет и для какого класса создавался образовательный трек в примере?',
+                            options: [
+                                'Английский язык, 3 класс',
+                                'Информатика, 7 класс',
+                                'Математика, 5 класс',
+                                'Физика, 10 класс'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какие термины должны были быть включены в текст песни по заданию?',
+                            options: [
+                                'Процессор, память, жесткий диск',
+                                'Аудиальная, визуальная, обонятельная, тактильная информация',
+                                'Алгоритм, программа, код',
+                                'Уравнение, функция, график'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какие два этапа генерации аудио описываются в работе?',
+                            options: [
+                                'Сначала генерируется мелодия, потом добавляются слова',
+                                'Сначала нейросеть пишет текст песни, затем генерирует саму песню',
+                                'Сначала записывается голос учителя, потом нейросеть его меняет',
+                                'Сначала выбирается жанр, потом генерируется текст'
+                            ],
+                            correct: 1
+                        },
+                        {
+                            question: 'Какие возможности аудио-нейросетей перечислены в итоге работы?',
+                            options: [
+                                'Только создание подкастов',
+                                'Создание уникальных аудиозаписей, запись и изменение голоса, генерация текстов песен',
+                                'Только озвучивание книг',
+                                'Только создание звуковых эффектов'
+                            ],
+                            correct: 1
+                        }
+                    ]
                 }
             ];
 
-            // Состояние: пройденные разделы (true/false) и раскрыт ли курс
+            // ============================================================
+            // СОСТОЯНИЕ
+            // ============================================================
             let completedSections = new Array(sectionsData.length).fill(false);
-            let isCourseExpanded = true; // По умолчанию раскрыт, чтобы сразу видеть разделы
+            let testPassed = new Array(sectionsData.length).fill(false);
+            let isCourseExpanded = true;
 
-            // DOM элементы
             const sectionsList = document.getElementById('sectionsList');
             const courseDetails = document.getElementById('courseDetails');
             const expandBtn = document.getElementById('expandBtn');
             const courseHeader = document.getElementById('courseHeader');
             
-            const courseProgressFill = document.getElementById('courseProgressFill');
-            const courseProgressText = document.getElementById('courseProgressText');
-            
             const overallProgressText = document.getElementById('overallProgressText');
             const overallProgressBar = document.getElementById('overallProgressBar');
             const progressMessage = document.getElementById('progressMessage');
 
-            // ---------- ФУНКЦИЯ ПОКАЗА УВЕДОМЛЕНИЯ ----------
+            // ============================================================
+            // УВЕДОМЛЕНИЯ
+            // ============================================================
             function showNotification(message, isError = false) {
-                // Удаляем старые уведомления
-                const oldNotifications = document.querySelectorAll('.notification');
-                oldNotifications.forEach(n => n.remove());
+                const old = document.querySelectorAll('.notification');
+                old.forEach(n => n.remove());
                 
-                const notification = document.createElement('div');
-                notification.className = 'notification';
-                notification.textContent = message;
-                
-                if (isError) {
-                    notification.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
-                }
-                
-                document.body.appendChild(notification);
+                const notif = document.createElement('div');
+                notif.className = 'notification' + (isError ? ' error' : '');
+                notif.textContent = message;
+                document.body.appendChild(notif);
                 
                 setTimeout(() => {
-                    notification.style.animation = 'fadeOut 0.3s ease-out';
-                    setTimeout(() => notification.remove(), 300);
-                }, 3000);
+                    notif.style.animation = 'fadeOut 0.3s ease-out';
+                    setTimeout(() => notif.remove(), 300);
+                }, 3500);
             }
 
-            // ---------- ФУНКЦИЯ СКАЧИВАНИЯ PDF ----------
-            function downloadPDF(pdfFileName, sectionName) {
-                const link = document.createElement('a');
-                link.href = pdfFileName;
-                link.download = pdfFileName;
-                link.style.display = 'none';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                showNotification(`📥 Скачивание: "${sectionName}" → ${pdfFileName}`);
-                
-
-            }
-
-            // ---------- ЗАГРУЗКА ИЗ LOCALSTORAGE ----------
+            // ============================================================
+            // ЗАГРУЗКА / СОХРАНЕНИЕ
+            // ============================================================
             function loadProgress() {
                 const saved = localStorage.getItem('teacherSectionsProgress');
                 if (saved) {
@@ -606,45 +1034,37 @@
                         if (parsed.completedSections && parsed.completedSections.length === sectionsData.length) {
                             completedSections = parsed.completedSections;
                         }
+                        if (parsed.testPassed && parsed.testPassed.length === sectionsData.length) {
+                            testPassed = parsed.testPassed;
+                        }
                         if (typeof parsed.isExpanded === 'boolean') {
                             isCourseExpanded = parsed.isExpanded;
                         }
-                    } catch (e) {
-                        console.error('Ошибка загрузки прогресса:', e);
-                    }
+                    } catch (e) {}
                 }
             }
 
-            // ---------- СОХРАНЕНИЕ В LOCALSTORAGE ----------
             function saveProgress() {
                 const toSave = {
                     completedSections: completedSections,
+                    testPassed: testPassed,
                     isExpanded: isCourseExpanded
                 };
                 localStorage.setItem('teacherSectionsProgress', JSON.stringify(toSave));
                 
-                // Для главной страницы сохраняем прогресс (совместимость с teacherCoursesProgress)
                 const completed = completedSections.filter(v => v === true).length;
                 const total = sectionsData.length;
-                const percentage = Math.round((completed / total) * 100);
-                
-                // Сохраняем в формате для teacherCoursesProgress (используется на главной)
                 const coursesProgress = sectionsData.map((section, idx) => ({
                     id: section.id,
                     name: section.name,
                     completed: completedSections[idx]
                 }));
                 localStorage.setItem('teacherCoursesProgress', JSON.stringify(coursesProgress));
-                
-                // Сохраняем также статистику прогресса
-                localStorage.setItem('teacherRoadmapProgress', JSON.stringify({
-                    completed: completed,
-                    total: total,
-                    percentage: percentage
-                }));
             }
 
-            // ---------- ПОДСЧЕТ ПРОГРЕССА ----------
+            // ============================================================
+            // ПОДСЧЕТ ПРОГРЕССА
+            // ============================================================
             function calculateProgress() {
                 const completed = completedSections.filter(v => v === true).length;
                 const total = sectionsData.length;
@@ -652,73 +1072,66 @@
                 return { completed, total, percentage };
             }
 
-            // ---------- ОБНОВЛЕНИЕ ВСЕХ ПРОГРЕСС-БАРОВ ----------
-            function updateAllProgress() {
+            // ============================================================
+            // ОБНОВЛЕНИЕ ПРОГРЕССА
+            // ============================================================
+            function updateProgress() {
                 const { completed, total, percentage } = calculateProgress();
                 
-                // Обновляем прогресс курса
-                courseProgressFill.style.width = `${percentage}%`;
-                courseProgressText.textContent = `${completed}/${total} разделов пройдено (${percentage}%)`;
-                
-                // Обновляем общий прогресс
-                overallProgressText.textContent = `${percentage}% (${completed}/${total} разделов)`;
+                overallProgressText.textContent = `${percentage}% (${completed}/${total})`;
                 overallProgressBar.style.width = `${percentage}%`;
 
                 if (percentage === 100) {
                     progressMessage.innerHTML = '🎉 Поздравляем! Вы полностью изучили курс "Нейросети в работе педагога"!';
                 } else if (percentage >= 70) {
-                    progressMessage.innerHTML = `🚀 Отлично! Осталось всего ${total - completed} раздел${total - completed === 1 ? '' : 'а'} до полного завершения!`;
+                    progressMessage.innerHTML = `🚀 Отлично! Осталось ${total - completed} раздел${total - completed === 1 ? '' : 'а'} до полного завершения!`;
                 } else if (percentage >= 40) {
-                    progressMessage.innerHTML = `📊 Хороший прогресс! Продолжайте изучать нейросети для работы.`;
+                    progressMessage.innerHTML = `📊 Хороший прогресс! Продолжайте изучать нейросети.`;
                 } else if (percentage > 0) {
-                    progressMessage.innerHTML = `🌱 Отличное начало! Вы уже изучили ${completed} из ${total} разделов.`;
+                    progressMessage.innerHTML = `🌱 Вы уже изучили ${completed} из ${total} разделов. Пройдите тесты!`;
                 } else {
-                    progressMessage.innerHTML = `📚 Открывайте разделы, скачивайте PDF и отмечайте пройденные материалы. Изучайте нейросети разных типов!`;
+                    progressMessage.innerHTML = `📚 Изучайте разделы и проходите тесты, чтобы получить галочку.`;
                 }
             }
 
-            // ---------- ОТМЕТКА РАЗДЕЛА ----------
-            function toggleSection(sectionIndex) {
-                completedSections[sectionIndex] = !completedSections[sectionIndex];
-                saveProgress();
-                renderSections();
-                updateAllProgress();
-            }
-
-            // ---------- ОТРИСОВКА РАЗДЕЛОВ ----------
+            // ============================================================
+            // РЕНДЕР РАЗДЕЛОВ
+            // ============================================================
             function renderSections() {
                 let html = '';
                 
                 sectionsData.forEach((section, index) => {
                     const isCompleted = completedSections[index];
+                    const hasTestPassed = testPassed[index];
                     
-                    // Выбор иконки в зависимости от типа нейросети
                     let icon = '';
                     if (section.id === 1) icon = '✍️';
                     else if (section.id === 2) icon = '📊';
                     else if (section.id === 3) icon = '🎬';
-                    else if (section.id === 4) icon = '🎵';
-                    else if (section.id === 5) icon = '🖼️';
+                    else if (section.id === 4) icon = '🖼️';
+                    else if (section.id === 5) icon = '🎵';
+                    
+                    const completedClass = isCompleted ? 'completed' : '';
+                    const testBtnClass = hasTestPassed ? 'passed' : '';
+                    const testBtnText = hasTestPassed ? '✅ Тест пройден' : '📝 Пройти тест';
                     
                     html += `
-                        <div class="section-item">
-                            <div class="section-info">
-                                <div class="section-number">${icon} Раздел ${section.id}</div>
-                                <div class="section-name">${section.name}</div>
-                                <div class="section-desc">${section.description}</div>
-                            </div>
-                            <div class="section-actions">
-                                <button class="pdf-btn" 
-                                        data-section-index="${index}"
-                                        data-pdf-file="${section.pdfFile}"
-                                        data-section-name="${section.name}">
-                                    📄 Скачать PDF
-                                </button>
-                                <input type="checkbox" 
-                                       class="section-checkbox"
-                                       data-section-index="${index}"
-                                       ${isCompleted ? 'checked' : ''}
-                                       title="Отметить раздел как пройденный">
+                        <div class="section-item ${completedClass}" data-section-index="${index}">
+                            <div class="section-row">
+                                <div class="section-info">
+                                    <div class="section-number">${icon} Раздел ${section.id}</div>
+                                    <div class="section-name">${section.name}</div>
+                                    <div class="section-desc">${section.description}</div>
+                                </div>
+                                <div class="section-actions">
+                                    <button class="pdf-btn" data-pdf="${section.pdfFile}" data-name="${section.name}">
+                                        📄 Скачать PDF
+                                    </button>
+                                    <button class="test-btn ${testBtnClass}" data-index="${index}" data-has-passed="${hasTestPassed}">
+                                        ${testBtnText}
+                                    </button>
+                                    <input type="checkbox" class="section-checkbox" data-index="${index}" ${isCompleted ? 'checked' : ''} disabled>
+                                </div>
                             </div>
                         </div>
                     `;
@@ -726,30 +1139,162 @@
                 
                 sectionsList.innerHTML = html;
                 
-                // Навешиваем обработчики на PDF кнопки
+                // PDF
                 document.querySelectorAll('.pdf-btn').forEach(btn => {
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation();
-                        const pdfFile = this.dataset.pdfFile;
-                        const sectionName = this.dataset.sectionName;
-                        if (pdfFile) {
-                            downloadPDF(pdfFile, sectionName);
+                        const pdf = this.dataset.pdf;
+                        const name = this.dataset.name;
+                        if (pdf) {
+                            const link = document.createElement('a');
+                            link.href = pdf;
+                            link.download = pdf;
+                            link.style.display = 'none';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            showNotification(`📥 Скачивание: "${name}" → ${pdf}`);
+                        } else {
+                            showNotification(`❌ Файл не найден`, true);
                         }
                     });
                 });
                 
-                // Навешиваем обработчики на чекбоксы разделов
-                document.querySelectorAll('.section-checkbox').forEach(checkbox => {
-                    checkbox.addEventListener('change', function(e) {
+                // ТЕСТ
+                document.querySelectorAll('.test-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
                         e.stopPropagation();
-                        const sectionIndex = parseInt(this.dataset.sectionIndex);
-                        toggleSection(sectionIndex);
-                        // Не вызываем renderSections рекурсивно, toggleSection сам вызовет
+                        const index = parseInt(this.dataset.index);
+                        const hasPassed = this.dataset.hasPassed === 'true';
+                        if (hasPassed) {
+                            showNotification('✅ Вы уже прошли этот тест!', false);
+                            return;
+                        }
+                        openTestModal(index);
                     });
                 });
             }
 
-            // ---------- РАСКРЫТИЕ/СВЕРТЫВАНИЕ КУРСА ----------
+            // ============================================================
+            // МОДАЛЬНОЕ ОКНО ТЕСТА
+            // ============================================================
+            function openTestModal(sectionIndex) {
+                const section = sectionsData[sectionIndex];
+                if (!section) return;
+                
+                const overlay = document.createElement('div');
+                overlay.className = 'test-modal-overlay';
+                
+                let questionsHtml = '';
+                section.tests.forEach((q, qIdx) => {
+                    questionsHtml += `
+                        <div class="question-block" data-qindex="${qIdx}">
+                            <div class="q-text">${qIdx + 1}. ${q.question}</div>
+                            <div class="q-options">
+                                ${q.options.map((opt, oIdx) => `
+                                    <label>
+                                        <input type="radio" name="q_${qIdx}" value="${oIdx}">
+                                        ${opt}
+                                    </label>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                overlay.innerHTML = `
+                    <div class="test-modal" id="testModalContent">
+                        <h2>📝 Тест: ${section.name}</h2>
+                        <p class="subtitle">Ответьте на все вопросы. Для зачета нужно ответить правильно на все 5 вопросов.</p>
+                        <div id="testQuestions">
+                            ${questionsHtml}
+                        </div>
+                        <div id="testResultArea" style="display: none;"></div>
+                        <div class="test-actions">
+                            <button class="btn btn-secondary" id="testCloseBtn">✕ Закрыть</button>
+                            <button class="btn btn-primary" id="testSubmitBtn">✅ Проверить ответы</button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(overlay);
+                
+                document.getElementById('testCloseBtn').addEventListener('click', function() {
+                    overlay.remove();
+                });
+                
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay) overlay.remove();
+                });
+                
+                document.getElementById('testSubmitBtn').addEventListener('click', function() {
+                    const questions = section.tests;
+                    let allCorrect = true;
+                    let correctCount = 0;
+                    
+                    questions.forEach((q, qIdx) => {
+                        const selected = document.querySelector(`input[name="q_${qIdx}"]:checked`);
+                        const block = document.querySelector(`.question-block[data-qindex="${qIdx}"]`);
+                        const labels = block.querySelectorAll('.q-options label');
+                        
+                        labels.forEach(l => l.classList.remove('correct', 'wrong'));
+                        
+                        if (selected) {
+                            const val = parseInt(selected.value);
+                            if (val === q.correct) {
+                                labels[q.correct].classList.add('correct');
+                                correctCount++;
+                            } else {
+                                labels[val].classList.add('wrong');
+                                labels[q.correct].classList.add('correct');
+                                allCorrect = false;
+                            }
+                        } else {
+                            allCorrect = false;
+                            labels[q.correct].classList.add('correct');
+                        }
+                    });
+                    
+                    const total = questions.length;
+                    const resultArea = document.getElementById('testResultArea');
+                    resultArea.style.display = 'block';
+                    
+                    if (allCorrect && correctCount === total) {
+                        testPassed[sectionIndex] = true;
+                        completedSections[sectionIndex] = true;
+                        saveProgress();
+                        renderSections();
+                        updateProgress();
+                        
+                        resultArea.innerHTML = `
+                            <div class="test-result">
+                                <div class="icon">🎉</div>
+                                <h3>Тест пройден!</h3>
+                                <div class="score">${correctCount}/${total}</div>
+                                <p>✅ Вы ответили правильно на все вопросы. Раздел отмечен как пройденный!</p>
+                            </div>
+                        `;
+                        document.getElementById('testSubmitBtn').style.display = 'none';
+                        document.getElementById('testCloseBtn').textContent = '✅ Закрыть';
+                        showNotification('🎉 Тест пройден! Раздел завершен!', false);
+                    } else {
+                        resultArea.innerHTML = `
+                            <div class="test-result">
+                                <div class="icon">😅</div>
+                                <h3>Нужно пересдать</h3>
+                                <div class="score">${correctCount}/${total}</div>
+                                <p>${correctCount === 0 ? 'Попробуйте еще раз, внимательно читайте вопросы!' : 'Вы ответили правильно не на все вопросы. Изучите материал и попробуйте снова.'}</p>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin-top: 8px;">💡 Правильные ответы отмечены зеленым, ваши неверные — красным.</p>
+                            </div>
+                        `;
+                        showNotification('❌ Не все ответы верны. Попробуйте еще раз!', true);
+                    }
+                });
+            }
+
+            // ============================================================
+            // РАСКРЫТИЕ КУРСА
+            // ============================================================
             function toggleCourseExpand() {
                 isCourseExpanded = !isCourseExpanded;
                 saveProgress();
@@ -763,22 +1308,26 @@
                 }
             }
 
-            // ---------- СБРОС ПРОГРЕССА ----------
+            // ============================================================
+            // СБРОС
+            // ============================================================
             function resetProgress() {
-                if (confirm('Вы уверены, что хотите сбросить весь прогресс? Все отметки о пройденных разделах будут удалены.')) {
+                if (confirm('Вы уверены, что хотите сбросить весь прогресс? Все отметки и результаты тестов будут удалены.')) {
                     completedSections = new Array(sectionsData.length).fill(false);
+                    testPassed = new Array(sectionsData.length).fill(false);
                     saveProgress();
                     renderSections();
-                    updateAllProgress();
+                    updateProgress();
                     showNotification('🔄 Весь прогресс сброшен');
                 }
             }
 
-            // ---------- ИНИЦИАЛИЗАЦИЯ ----------
+            // ============================================================
+            // ИНИЦИАЛИЗАЦИЯ
+            // ============================================================
             function init() {
                 loadProgress();
                 
-                // Устанавливаем состояние раскрытия
                 if (isCourseExpanded) {
                     courseDetails.classList.add('open');
                     expandBtn.textContent = '▲';
@@ -788,21 +1337,16 @@
                 }
                 
                 renderSections();
-                updateAllProgress();
+                updateProgress();
                 
-                // Навешиваем обработчики
                 expandBtn.addEventListener('click', toggleCourseExpand);
                 courseHeader.addEventListener('click', function(e) {
-                    // Чтобы не срабатывало при клике на кнопку внутри
                     if (e.target !== expandBtn && !expandBtn.contains(e.target)) {
                         toggleCourseExpand();
                     }
                 });
                 
-                const resetBtn = document.getElementById('resetProgressBtn');
-                if (resetBtn) {
-                    resetBtn.addEventListener('click', resetProgress);
-                }
+                document.getElementById('resetProgressBtn').addEventListener('click', resetProgress);
             }
 
             init();
